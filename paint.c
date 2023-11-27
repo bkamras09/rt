@@ -38,7 +38,7 @@ bool hit_any_Objects(ray r, float t_min, float t_max, Object *o, World *w) {
 	float closest_so_far = t_max;
 	
 	// it's a brute force max finding algorithm for the closest object to the camera
-	for (uint i = 0; i < w->object_limit; i++) {
+	for (unsigned int i = 0; i < w->object_limit; i++) {
 		if ( hit( r, t_min, closest_so_far, &w->objects[i] ) ) {
 			hit_anything = true;
 			closest_so_far = w->objects[i].t;

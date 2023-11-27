@@ -26,9 +26,9 @@ int main() {
 	world.objects[1] = make_Object(q, 0.8, make_Vec3(0, -0.3, 0), make_Vec3(0, 0, 0), make_Vec3(0.4, 1, -2));
 	world.objects[2] = make_Object(q, 100, make_Vec3(0, 0, 0), make_Vec3(0, 0, 0), make_Vec3(0, -100.5, -1));
 	for (int j = IMAGE_HEIGHT - 1; j >= 0; j--) {
-		for (uint i = 0; i < IMAGE_WIDTH; i++) {
+		for (unsigned int i = 0; i < IMAGE_WIDTH; i++) {
 			Vec3 col = make_Vec3(0, 0, 0);
-			for (uint s = 0; s < NUMBER_OF_SAMPLES; s++) {
+			for (unsigned int s = 0; s < NUMBER_OF_SAMPLES; s++) {
 				float u = (float)( i + drand48()) / (float)IMAGE_WIDTH;
 				float v = (float)( j + drand48()) / (float)IMAGE_HEIGHT;
 				ray r = get_ray(u, v, cam);

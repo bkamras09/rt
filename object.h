@@ -20,7 +20,7 @@ typedef struct {
 } Object;
 
 typedef struct {
-	uint object_limit;
+	unsigned int object_limit;
 	Object objects[256];
 } World;
 
