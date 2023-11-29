@@ -7,9 +7,9 @@
 #define DIM_STRING_LENGTH 4
 
 static const unsigned int COLOR_DEPTH = 255;
-static const unsigned int IMAGE_WIDTH = 800;
-static const int IMAGE_HEIGHT = 400;
-static const unsigned int NUMBER_OF_SAMPLES = 50;
+static const unsigned int IMAGE_WIDTH = 1200;
+static const int IMAGE_HEIGHT = 600;
+static const unsigned int NUMBER_OF_SAMPLES = 100;
 static const unsigned int FILE_WIDTH = 8;          // 255 255\n
 static const unsigned int FILE_HEADER_LENGTH = 16; // P3\n1920 1080\n255
 static const unsigned int WORLD_OBJECT_LIMIT = 256;
