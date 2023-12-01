@@ -20,45 +20,70 @@ int main()
 	uint64_t p = make_file_header(output_data);
 	
 	Camera cam = make_Camera(
-		make_Vec3(3, 3, 2),
+		make_Vec3(18, 6, 4),
 		make_Vec3(0, 0, -1),
 		make_Vec3(0, 1, 0),
-		25,
+		30,
 		0.1);
 
 	World world;
-	world.object_limit = 4; // WORLD_OBJECT_LIMIT in config.h;
+	world.object_limit = 7; // WORLD_OBJECT_LIMIT in config.h;
 	//float R = cos(M_PI/4);
 
 	world.objects[0] = make_Object(
 		0,
-		0.5,
-		make_Vec3(0, 0, -1),
+		2,
+		make_Vec3(-4, 1, 0),
 		make_Vec3(0.1, 0.2, 0.3),
 		LAMBERTIAN);
 
 	world.objects[1] = make_Object(
 		0,
 		1000,
-		make_Vec3(0, -1000.5, -1),
+		make_Vec3(0, -1001, -1),
 		make_Vec3(0.5, 0.5, 0.5),
 		LAMBERTIAN);
 
 	world.objects[2] = make_Object(
 		0,
-		0.5,
-		make_Vec3(1, 0, -1),
+		2,
+		make_Vec3(4, 1, 0),
 		make_Vec3(0.7, 0.6, 0.5),
 		METAL);
 	world.objects[2].fuzz = 0;
 
 	world.objects[3] = make_Object(
 		0,
-		0.5,
-		make_Vec3(-1, 0, -1),
+		2,
+		make_Vec3(0, 1, 0),
 		make_Vec3(0.8, 0.8, 0.8),
 		DIELECTRIC);
 	world.objects[3].refractive_index = 1.5;
+
+	world.objects[4] = make_Object(
+		0,
+		0.2,
+		make_Vec3(3, 1, 3),
+		make_Vec3(0, 0.8, 0.8),
+		METAL);
+	world.objects[4].fuzz = 0;
+
+	world.objects[5] = make_Object(
+		0,
+		0.2,
+		make_Vec3(2, 0, 2),
+		make_Vec3(0, 0.8, 0.8),
+		METAL);
+	world.objects[5].fuzz = 0;
+
+	world.objects[6] = make_Object(
+		0,
+		0.2,
+		make_Vec3(3, 1, 4),
+		make_Vec3(0.9, 0, 0.3),
+		LAMBERTIAN);
+
+	world.objects[6].fuzz = 0;
 
 	for (int j = IMAGE_HEIGHT - 1; j >= 0; j--) {
 		for (unsigned int i = 0; i < IMAGE_WIDTH; i++) {
