@@ -57,6 +57,8 @@ uint64_t write_pixels_to_file(char *output, float r, float g, float b, uint64_t 
 	p = str_cat_next_pos(output, " ", p);
 	p = str_cat_next_pos(output, blue_as_string, p);
 	p = str_cat_next_pos(output, "\n", p);	
+
+	return p;
 }
 
 #endif
