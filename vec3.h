@@ -31,5 +31,6 @@ float Vec3_squared_length(Vec3 v);
 Vec3 cross(Vec3 v1, Vec3 v2);
 Vec3 unit_vector(Vec3 v);
 Vec3 reflect(Vec3 v, Vec3 n);
+void print_Vec3(Vec3 v);
 
 #endif

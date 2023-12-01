@@ -16,28 +16,58 @@
 int main()
 {
 	char *output_data = malloc(sizeof(char) * (MAX_FILE_SIZE));
+
 	uint64_t p = make_file_header(output_data);
-	Camera cam = make_Camera();
+	
+	Camera cam = make_Camera(
+		make_Vec3(3, 3, 2),
+		make_Vec3(0, 0, -1),
+		make_Vec3(0, 1, 0),
+		25,
+		0.1);
 
 	World world;
 	world.object_limit = 4; // WORLD_OBJECT_LIMIT in config.h;
-	float q = 0.;
+	//float R = cos(M_PI/4);
 
-	world.objects[0] = make_Object(q, 0.5, make_Vec3(-1, 0, 0), make_Vec3(0, 0, 0), make_Vec3(0, 0, -1), make_Vec3(0.8, 0.3, 0.3), LAMBERTIAN);
-	world.objects[1] = make_Object(q, 100, make_Vec3(1, 0, -1), make_Vec3(0, 0, 0), make_Vec3(0, -100.5, -1), make_Vec3(0.8, 0.8, 0.0), LAMBERTIAN);
-	world.objects[2] = make_Object(q, 0.5, make_Vec3(0, 0, 0), make_Vec3(0, 0, 0), make_Vec3(1, 0, -1), make_Vec3(0.8, 0.6, 0.2), METAL);
-	world.objects[3] = make_Object(q, 0.5, make_Vec3(-1, 0, -1), make_Vec3(0, 0, 0), make_Vec3(-1, 0, -1), make_Vec3(0.8, 0.8, 0.8), DIELECTRIC);
+	world.objects[0] = make_Object(
+		0,
+		0.5,
+		make_Vec3(0, 0, -1),
+		make_Vec3(0.1, 0.2, 0.3),
+		LAMBERTIAN);
+
+	world.objects[1] = make_Object(
+		0,
+		1000,
+		make_Vec3(0, -1000.5, -1),
+		make_Vec3(0.5, 0.5, 0.5),
+		LAMBERTIAN);
+
+	world.objects[2] = make_Object(
+		0,
+		0.5,
+		make_Vec3(1, 0, -1),
+		make_Vec3(0.7, 0.6, 0.5),
+		METAL);
+	world.objects[2].fuzz = 0;
+
+	world.objects[3] = make_Object(
+		0,
+		0.5,
+		make_Vec3(-1, 0, -1),
+		make_Vec3(0.8, 0.8, 0.8),
+		DIELECTRIC);
 	world.objects[3].refractive_index = 1.5;
-	for (int j = IMAGE_HEIGHT - 1; j >= 0; j--)
-	{
-		for (unsigned int i = 0; i < IMAGE_WIDTH; i++)
-		{
+
+	for (int j = IMAGE_HEIGHT - 1; j >= 0; j--) {
+		for (unsigned int i = 0; i < IMAGE_WIDTH; i++) {
 			Vec3 col = make_Vec3(0, 0, 0);
-			for (unsigned int s = 0; s < NUMBER_OF_SAMPLES; s++)
-			{
+			for (unsigned int s = 0; s < NUMBER_OF_SAMPLES; s++) {
 				float u = (float)(i + drand48()) / (float)IMAGE_WIDTH;
 				float v = (float)(j + drand48()) / (float)IMAGE_HEIGHT;
 				ray r = get_ray(u, v, cam);
+
 				// Vec3 pt = pt_at_param(r, 2.0);
 				col = add_inc_Vec3(col, color(r, &world, 0));
 			}
@@ -48,10 +78,12 @@ int main()
 			p = write_pixels_to_file(output_data, col.e[0], col.e[1], col.e[2], p);
 		}
 	}
+
 	output_data[p] = '\0';
 
 	write_image(OUTPUT_FILE_NAME, output_data);
 
+	// free_world(w, c);
 	free(output_data);
 
 	return 0;

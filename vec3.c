@@ -1,6 +1,7 @@
 #include <math.h>
 #include <stdlib.h>
 #include <stdbool.h>
+#include <stdio.h>
 #include "vec3.h"
 
 inline Vec3 make_Vec3(float e0, float e1, float e2) {
@@ -68,14 +69,11 @@ inline float dot(Vec3 v1, Vec3 v2) {
 	return v1.e[0]*v2.e[0] + v1.e[1]*v2.e[1] + v1.e[2]*v2.e[2];
 }
 inline Vec3 cross(Vec3 v1, Vec3 v2) {
-	Vec3 v;
-	v.e[0] =   v.e[1]*v.e[2] - v.e[2]*v.e[1];
-	v.e[1] = -(v.e[0]*v.e[2] - v.e[2]*v.e[0]);
-	v.e[2] =   v.e[0]*v.e[1] - v.e[1]*v.e[0];
-	
-	return v;
+	return make_Vec3(v1.e[1]*v2.e[2] - v1.e[2]*v2.e[1], -(v1.e[0]*v2.e[2] - v1.e[2]*v2.e[0]), v1.e[0]*v2.e[1] - v1.e[1]*v2.e[0]);
 }
 inline Vec3 reflect(Vec3 v, Vec3 n) {
 	//return v - 2*dot(v, n)*n;
 	return sub_Vec3( v, mul_scalar(n, ( 2 * dot( v, n ) ) ) );
-	}
+}
+
+void print_Vec3(Vec3 v) { printf("Vec3 components -> x: %.6f\ty: %.6f\tz: %.6f\n", v.e[0], v.e[1], v.e[2]); }

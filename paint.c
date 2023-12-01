@@ -74,7 +74,7 @@ bool bounce(ray r, Object *o, Vec3 *attenuation, ray *scattered)
 bool scatter_METAL(ray r, Object *o, Vec3 *attenuation, ray *scattered)
 {
 	Vec3 reflected = reflect(unit_vector(r.direction), o->normal);
-	*scattered = make_ray(o->p, reflected);
+	*scattered = make_ray( o->p, add_Vec3( reflected, mul_scalar( random_in_unit_sphere(), o->fuzz ) ) ); //make_ray(o->p, reflected);
 	*attenuation = o->albedo;
 	return (dot(scattered->direction, o->normal) > 0);
 }
