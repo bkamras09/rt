@@ -7,6 +7,6 @@ ray tracing project
 ### First render with metals, lambertians, and dielectrics
 ![alt text](https://github.com/bkamras09/rt/blob/material-support/materials.png)
 ### Positionable camera
-![alt text](https://github.com/bkamras09/rt/blob/positionable-camera/materials.png)
+![alt text](https://github.com/bkamras09/rt/blob/positionable-camera/positionable-camera.png)
 ### Defocus blue (depth of field)
 ![alt text](https://github.com/bkamras09/rt/blob/positionable-camera/defocus-blur.png)
