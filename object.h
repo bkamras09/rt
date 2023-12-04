@@ -1,6 +1,7 @@
 #ifndef OBJECTH
 #define OBJECTH
 
+#include <setjmp.h>
 #include <stdbool.h>
 #include <stdlib.h>
 #include "ray.h"
@@ -35,10 +36,21 @@ typedef struct
 typedef struct
 {
 	unsigned int object_limit;
+	unsigned int number_of_objects;
 	Object objects[256];
 } World;
 
 Object make_Object(float t, float radius, Vec3 position, Vec3 albedo, EMaterialType type);
+Object new_Object(float radius, Vec3 position, EMaterialType type);
+Object new_metal(Vec3 position, Vec3 albedo, float radius, float fuzz);
+Object new_lambertian(Vec3 position, Vec3 albedo, float radius);
+Object new_dielectric(Vec3 position, float radius, float refractive_index);
+Object new_Object(float radius, Vec3 position, EMaterialType type);
+
+void add_to_World(World *w, Object o);
+World create_empty_world();
+
 bool scatter(ray r_in, Object o, Vec3 attenuation, ray scattered);
 bool refract(Vec3 v, Vec3 n, float ni_over_nt, Vec3 *refracted);
+
 #endif

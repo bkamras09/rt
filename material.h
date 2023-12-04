@@ -2,7 +2,6 @@
 #define MATERIALH
 
 #include <stdbool.h>
-#include "ray.h"
 #include "vec3.h"
 
 typedef enum

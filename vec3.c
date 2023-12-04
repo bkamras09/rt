@@ -4,13 +4,16 @@
 #include <stdio.h>
 #include "vec3.h"
 
-inline Vec3 make_Vec3(float e0, float e1, float e2) {
+inline Vec3 make_Vec3(float e0, float e1, float e2)
+{
 	Vec3 v; v.e[0] = e0; v.e[1] = e1; v.e[2] = e2; return v;
 }
-inline Vec3 negate_Vec3(Vec3 v) {
+inline Vec3 negate_Vec3(Vec3 v)
+{
 	v.e[0] = -v.e[0]; v.e[1] = -v.e[1]; v.e[2] = -v.e[2]; return v;
 }
-inline float Vec3_length(Vec3 v) {
+inline float Vec3_length(Vec3 v)
+{
 	return (float)sqrt( v.e[0]*v.e[0]  +  v.e[1]*v.e[1]  +  v.e[2]*v.e[2] );
 }
 inline float Vec3_squared_length(Vec3 v) {

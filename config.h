@@ -7,10 +7,10 @@
 #define DIM_STRING_LENGTH 4
 
 static const unsigned int COLOR_DEPTH = 255;
-static const unsigned int IMAGE_WIDTH = 2000;
-static const int IMAGE_HEIGHT = 1000;
-static const float ASPECT_RATIO = (float)(IMAGE_WIDTH / IMAGE_HEIGHT);
-static const unsigned int NUMBER_OF_SAMPLES = 500;
+static const unsigned int IMAGE_WIDTH = 200;
+static const int IMAGE_HEIGHT = 100;
+static const float ASPECT_RATIO = (float)IMAGE_WIDTH / (float)IMAGE_HEIGHT;
+static const unsigned int NUMBER_OF_SAMPLES = 50;
 static const unsigned int FILE_WIDTH = 8;          // 255 255\n
 static const unsigned int FILE_HEADER_LENGTH = 16; // P3\n1920 1080\n255
 static const unsigned int WORLD_OBJECT_LIMIT = 256;
